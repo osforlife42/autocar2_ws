@@ -1,0 +1,75 @@
+# Name of the domain bridge, used for node naming and logging
+name: my_bridge
+from_domain: 12
+to_domain: 11
+topics:
+  # Bridge "/clock" topic from doman ID 2 to domain ID 3
+  clock:
+    type: rosgraph_msgs/msg/Clock
+  
+  map: 
+    type: nav_msgs/msg/OccupancyGrid
+
+  map_updates: 
+    type: nav_msgs/msg/OccupancyGridUpdate
+
+  robot_description:
+    type: std_msgs/msg/String
+  
+  tf: 
+    type: tf2_msgs/msg/TFMessage
+
+  tf_static: 
+    type: tf2_msgs/msg/TFMessage
+
+  scan: 
+    type: sensor_msgs/msg/LaserScan
+  
+  cmd_vel: 
+    type: geometry_msgs/msg/Twist
+    bidirectional: True
+
+  camera_left_sensor/camera_info: 
+    type: sensor_msgs/msg/CameraInfo
+
+  camera_left_sensor/image_raw: 
+    type: sensor_msgs/msg/Image
+
+  camera_front_sensor/camera_info: 
+    type: sensor_msgs/msg/CameraInfo
+
+  camera_front_sensor/image_raw: 
+    type: sensor_msgs/msg/Image
+
+  camera_right_sensor/camera_info: 
+    type: sensor_msgs/msg/CameraInfo
+
+  camera_right_sensor/image_raw: 
+    type: sensor_msgs/msg/Image
+
+  camera_rear_sensor/camera_info: 
+    type: sensor_msgs/msg/CameraInfo
+
+  camera_rear_sensor/image_raw: 
+    type: sensor_msgs/msg/Image
+
+  initialpose:
+    type: geometry_msgs/msg/PoseWithCovarianceStamped
+    reversed: True
+  
+  goal_pose:
+    type: geometry_msgs/msg/PoseStamped
+    reversed: True
+
+  teb_poses:
+    type: geometry_msgs/msg/PoseArray
+  
+  teb_markers:
+    type: visualization_msgs/msg/Marker
+
+# more topics which are in the home domain but I didn't add to the bridge - 
+# /clicked_point
+# /marker
+# /marker_array
+# /parameter_events
+# /rosout

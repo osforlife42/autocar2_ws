@@ -1,0 +1,5 @@
+[console_scripts]
+generate_and_pub = cv_utils.demo_image_pub:main
+sub_and_display = cv_utils.read_topic_and_display:main
+sub_and_pub_point = cv_utils.sub_and_pub_point:main
+

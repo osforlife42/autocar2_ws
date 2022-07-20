@@ -1,0 +1,22 @@
+digraph G {
+"r_steer_1" -> "fr_1"[label=" Broadcaster: default_authority\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 1655737566.334966\nOldest transform: 1655737561.434832\n"];
+"odom" -> "base_footprint"[label=" Broadcaster: default_authority\nAverage rate: 100.212\nBuffer length: 4.71\nMost recent transform: 90.24\nOldest transform: 85.53\n"];
+"base_link" -> "body_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_footprint" -> "base_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"pod" -> "camera_front"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"body_link" -> "pod"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"pod" -> "camera_left"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"pod" -> "camera_rear"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"pod" -> "camera_right"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"pod" -> "laser"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"l_steer_1" -> "fl_1"[label=" Broadcaster: default_authority\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 1655737566.334966\nOldest transform: 1655737561.434832\n"];
+"body_link" -> "br_1"[label=" Broadcaster: default_authority\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 1655737566.334966\nOldest transform: 1655737561.434832\n"];
+"body_link" -> "bl_1"[label=" Broadcaster: default_authority\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 1655737566.334966\nOldest transform: 1655737561.434832\n"];
+"body_link" -> "r_steer_1"[label=" Broadcaster: default_authority\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 1655737566.334966\nOldest transform: 1655737561.434832\n"];
+"body_link" -> "l_steer_1"[label=" Broadcaster: default_authority\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 1655737566.334966\nOldest transform: 1655737561.434832\n"];
+"map" -> "odom"[label=" Broadcaster: default_authority\nAverage rate: 53.518\nBuffer length: 4.69\nMost recent transform: 90.398\nOldest transform: 85.708\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1655737566.4612668"[ shape=plaintext ] ;
+}->"map";
+}

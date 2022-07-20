@@ -1,0 +1,21 @@
+digraph G {
+"map" -> "odom"[label=" Broadcaster: default_authority\nAverage rate: 63.953\nBuffer length: 3.956\nMost recent transform: 17.362\nOldest transform: 13.406\n"];
+"pod" -> "camera_front"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "pod"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"pod" -> "camera_left"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"pod" -> "camera_rear"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"pod" -> "camera_right"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_footprint" -> "base_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"odom" -> "base_footprint"[label=" Broadcaster: default_authority\nAverage rate: 13.249\nBuffer length: 3.774\nMost recent transform: 17.187\nOldest transform: 13.413\n"];
+"pod" -> "laser"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "bl_1"[label=" Broadcaster: default_authority\nAverage rate: 16.918\nBuffer length: 3.842\nMost recent transform: 17.238\nOldest transform: 13.396\n"];
+"base_link" -> "br_1"[label=" Broadcaster: default_authority\nAverage rate: 16.918\nBuffer length: 3.842\nMost recent transform: 17.238\nOldest transform: 13.396\n"];
+"l_steer_1" -> "fl_1"[label=" Broadcaster: default_authority\nAverage rate: 16.918\nBuffer length: 3.842\nMost recent transform: 17.238\nOldest transform: 13.396\n"];
+"base_link" -> "l_steer_1"[label=" Broadcaster: default_authority\nAverage rate: 16.918\nBuffer length: 3.842\nMost recent transform: 17.238\nOldest transform: 13.396\n"];
+"r_steer_1" -> "fr_1"[label=" Broadcaster: default_authority\nAverage rate: 16.918\nBuffer length: 3.842\nMost recent transform: 17.238\nOldest transform: 13.396\n"];
+"base_link" -> "r_steer_1"[label=" Broadcaster: default_authority\nAverage rate: 16.918\nBuffer length: 3.842\nMost recent transform: 17.238\nOldest transform: 13.396\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1656325874.2028418"[ shape=plaintext ] ;
+}->"map";
+}

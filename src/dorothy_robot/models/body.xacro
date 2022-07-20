@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <material name="Body_Gray">
+        <color rgba="0.0 0.0 0.0 1.0" />
+    </material>
+    <xacro:macro name="make_body">
+        <xacro:property name="w" value="0.25" />
+        <xacro:property name="h" value="0.03" />
+        <xacro:property name="l" value="1" />
+        <xacro:property name="m" value="0.5" />
+        <xacro:include filename="lib.xacro" />
+
+        <link name="body_link">
+            <visual>
+                <geometry>
+                    <box size="${l} ${w} ${h}" />
+                </geometry>
+                <material name="Body_Gray" />
+            </visual>
+            <collision>
+                <geometry>
+                    <box size=" ${l} ${w} ${h}" />
+                </geometry>
+            </collision>
+            <xacro:box_inertia m="${m}" x="${l}" y="${w}" z="${h}" />
+        </link>
+        <gazebo reference="body_link">
+            <material value="Gazebo/Wood" />
+            <sensor name="imu_sensor" type="imu">
+                <!-- <pose>0 0 0 3.141593 0 0</pose> -->
+                <always_on>1</always_on>
+                <gravity>true</gravity>
+                <update_rate>1000.0</update_rate>
+            </sensor>
+        </gazebo>
+
+
+    </xacro:macro>
+    <xacro:make_body />
+
+</robot>

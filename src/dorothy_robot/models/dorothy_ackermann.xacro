@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<robot name="dorothy"
+    xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="pod.xacro" />
+    <xacro:include filename="ackermann_wheels.xacro" />
+
+    <xacro:property name="l_b" value="0.5"/>
+    <xacro:property name="w_b" value="0.3"/>
+    <xacro:property name="h_b" value="0.1"/>
+    <xacro:property name="m_b" value="8"/>
+    <xacro:property name="base_footprint_axis_denominator" value="2"/>
+
+    <xacro:property name="wheel_h" value="0.1"/>
+    <xacro:property name="wheel_spacing" value="0.1"/>
+    <xacro:property name="wheel_dist_from_center" value="0.3"/>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="${l_b} ${w_b} ${h_b}" />
+            </geometry>
+            <material name="Body_Gray" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${l_b} ${w_b} ${h_b}" />
+            </geometry>
+        </collision>
+        <xacro:box_inertia m="${m_b}" x="${l_b}" y="${w_b}" z="${h_b}" />
+    </link>
+    <xacro:property name="pod_h" value="0.1" />
+    <joint name="pod_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="pod" />
+        <origin xyz="0 0 ${(pod_h+h_b)/2}" rpy="0 0 ${M_PI}" />
+    </joint>
+    <gazebo reference="pod_joint">
+        <preserveFixedJoint>true</preserveFixedJoint>
+        <!-- <disableFixedJointLumping>true</disableFixedJointLumping> -->
+    </gazebo>
+    <link name="base_footprint">
+        <visual>
+            <geometry>
+                <box size="${l_b / base_footprint_axis_denominator} ${w_b / base_footprint_axis_denominator} ${h_b / base_footprint_axis_denominator}" />
+            </geometry>
+            <material name="Body_Gray" />
+        </visual>
+        <!-- <collision>
+            <geometry>
+                <box size="${l_b / base_footprint_axis_denominator} ${w_b / base_footprint_axis_denominator} ${h_b / base_footprint_axis_denominator}" />
+            </geometry>
+        </collision> -->
+        <xacro:box_inertia m="${m_b / (base_footprint_axis_denominator * base_footprint_axis_denominator * base_footprint_axis_denominator)}" x="${l_b / base_footprint_axis_denominator}" y="${w_b / base_footprint_axis_denominator}" z="${h_b / base_footprint_axis_denominator}" />
+    </link>
+    <!-- The base footprint of the robot is located underneath the chassis -->
+    <joint name="footprint_joint" type="fixed">
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <origin xyz="0 0 ${r_wheel + wheel_h}" rpy="0 0 ${M_PI}" />
+    </joint>
+    <gazebo reference="footprint_joint">
+        <preserveFixedJoint>true</preserveFixedJoint>
+        <!-- <disableFixedJointLumping>true</disableFixedJointLumping> -->
+    </gazebo>
+
+    <gazebo reference="base_footprint">
+        <material value="Gazebo/Wood" />
+    </gazebo>
+    <gazebo reference="base_link">
+        <material value="Gazebo/Wood" />
+    </gazebo>
+
+
+
+
+    <xacro:autocar_front_wheel name="fr" steer_name="r_steer" rpy="0 0 0" xyz="${-wheel_dist_from_center} ${wheel_spacing+(w_b/2)} ${-wheel_h}" base_link_name="base_link"/>
+    <xacro:autocar_front_wheel name="fl" steer_name="l_steer" rpy="0 0 0" xyz="${-wheel_dist_from_center} ${-(wheel_spacing+(w_b/2))}  ${-wheel_h}" base_link_name="base_link"/>
+    <xacro:autocar_back_wheel name="br" rpy="0 0 0" xyz="${wheel_dist_from_center} ${wheel_spacing+(w_b/2)} ${-wheel_h}" base_link_name="base_link"/>
+    <xacro:autocar_back_wheel name="bl" rpy="0 0 0" xyz="${wheel_dist_from_center} ${-(wheel_spacing+(w_b/2))} ${-wheel_h}" base_link_name="base_link"/>
+
+    <xacro:property name="steering_pid" value="100 0 17"/>
+    <!-- <xacro:property name="steering_pid" value="0 0 0"/> -->
+    <xacro:property name="steering_i_range" value="0 0"/>
+    <xacro:property name="linear_pid" value="1 0 0"/>
+    <xacro:property name="linear_i_range" value="0 0"/>
+
+    <gazebo>
+        <plugin name='ackermann_drive' filename='libgazebo_ros_ackermann_drive.so'>
+
+            <ros>
+                <!-- <namespace>ackermann_dorothy</namespace> -->
+                <remapping>cmd_vel:=cmd_vel</remapping>
+                <remapping>odom:=wheel/odometry</remapping>
+                <remapping>distance:=distance</remapping>
+            </ros>
+
+            <update_rate>60.0</update_rate>
+
+            <!-- wheels -->
+            <front_left_joint>fl_axle</front_left_joint>
+            <front_right_joint>fr_axle</front_right_joint>
+            <rear_left_joint>bl_axle</rear_left_joint>
+            <rear_right_joint>br_axle</rear_right_joint>
+            <left_steering_joint>l_steer</left_steering_joint>
+            <right_steering_joint>r_steer</right_steering_joint>
+            <!-- <steering_wheel_joint>steering_joint</steering_wheel_joint> -->
+
+
+            <!-- Max absolute steer angle for tyre in radians-->
+            <!-- Any cmd_vel angular z greater than this would be capped -->
+            <max_steer>0.6</max_steer>
+
+            <!-- Max absolute steering angle of steering wheel -->
+            <!-- Max absolute steering angle of steering wheel -->
+            <max_steering_angle>2</max_steering_angle>
+
+            <!-- Max absolute linear speed in m/s -->
+            <max_speed>10</max_speed>
+
+            <!-- PID tuning -->
+            <left_steering_pid_gain>${steering_pid} </left_steering_pid_gain>
+            <left_steering_i_range>${steering_i_range}</left_steering_i_range>
+            <right_steering_pid_gain>${steering_pid}</right_steering_pid_gain>
+            <right_steering_i_range>${steering_i_range}</right_steering_i_range>
+            <linear_velocity_pid_gain>${linear_pid}</linear_velocity_pid_gain>
+            <linear_velocity_i_range>${linear_i_range}</linear_velocity_i_range>
+
+            <!-- output -->
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>false</publish_odom_tf>
+            <publish_wheel_tf>false</publish_wheel_tf>
+            <publish_distance>false</publish_distance>
+
+            <odometry_frame>odom</odometry_frame>
+            <robot_base_frame>base_footprint</robot_base_frame>
+
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin name="dorothy2_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
+            <ros>
+                <remapping>~/out:=joint_states</remapping>
+            </ros>
+            <update_rate>30</update_rate>
+            <joint_name>fl_axle</joint_name>
+            <joint_name>fr_axle</joint_name>
+            <joint_name>br_axle</joint_name>
+            <joint_name>bl_axle</joint_name>
+            <joint_name>r_steer</joint_name>
+            <joint_name>l_steer</joint_name>
+        </plugin>
+
+    </gazebo>
+</robot> 

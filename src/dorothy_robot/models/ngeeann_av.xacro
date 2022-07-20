@@ -1,0 +1,114 @@
+<?xml version="1.0" ?>
+<robot name="ngeeann_av" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+    <xacro:include filename="ng_autocar_wheels.xacro" />
+<!-- RVIZ MATERIAL COLOUR -->
+<material name="silver">
+  <color rgba="0.1 0.1 0.1 0.5"/>
+</material>
+
+<material name="darkgrey">
+  <color rgba="0 0 0 0.7"/>
+</material>
+
+
+<!-- ROBOT DEFINITION -->
+<link name="base_link"/>
+
+<joint name="chassis_link_joint" type="fixed">
+  <origin xyz="0 0 0.4936" rpy="0 0 0" />
+  <parent link="base_link"/>
+  <child link="chassis_link"/>
+</joint>
+
+<joint name="hokuyo_joint" type="fixed">
+  <axis xyz="0 1 0" />
+  <origin xyz="0 2.34 0.24" rpy="0 0 1.5708"/>
+  <parent link="chassis_link"/>
+  <child link="hokuyo_link"/>
+</joint>
+
+<link name="hokuyo_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 1.0"/>
+    <geometry>
+      <box size="0.05 0.05 0.05"/>
+    </geometry>
+  </collision>
+
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ngeeann_av/meshes/hokuyo.dae"/>
+    </geometry>
+  </visual>
+  
+  <inertial>
+    <mass value="1e-5" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+  </inertial>
+</link>
+
+<link name="chassis_link">
+  <inertial>
+    <origin rpy="0 0 0" xyz="1.04282e-06 0.07307 0.1816"/>
+    <mass value="1580"/>
+    <inertia ixx="1997.8579" ixy="-3e-05" ixz="-1e-06" iyy="442.7692" iyz="62.5206" izz="2238.0524"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ngeeann_av/meshes/chassis_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ngeeann_av/meshes/chassis_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="spoiler_joint" type="fixed">
+  <origin xyz="0 0.05 -0.05" rpy="1.5708 0 3.14159" />
+  <parent link="chassis_link"/>
+  <child link="spoiler_link"/>
+</joint>
+
+<link name="spoiler_link">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ngeeann_av/meshes/spoiler.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ngeeann_av/meshes/spoiler.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+
+
+<xacro:autocar_back_wheel name="bl" rpy="0 0 0"  xyz="-0.8750 -1.013637 -0.144363" base_link_name="chassis_link" />
+<xacro:autocar_back_wheel name="br" rpy="0 0 0"  xyz="0.8750 -1.013637 -0.144363" base_link_name="chassis_link" />
+
+<xacro:autocar_front_wheel name="fr" steer_name="r_steer" rpy="0 0 0"  xyz="0.8250 1.517363 -0.144363 " base_link_name="chassis_link" />
+<xacro:autocar_front_wheel name="fl" steer_name="l_steer" rpy="0 0 0"  xyz="-0.8250 1.517363 -0.144363 " base_link_name="chassis_link" />
+
+<gazebo reference="spoiler_link">
+  <material>Gazebo/DarkGrey</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+  <gravity>true</gravity>
+</gazebo>
+
+
+</robot>

@@ -1,0 +1,16 @@
+[submodule "src/costmap_converter"]
+	path = src/costmap_converter
+	url = https://github.com/esharet/costmap_converter.git
+	branch = ros2
+[submodule "src/teb_local_planner"]
+	path = src/teb_local_planner
+	url = https://github.com/esharet/teb_local_planner.git
+	branch = ros2-master
+[submodule "src/domain_bridge"]
+	path = src/domain_bridge
+	url = https://github.com/esharet/my_domain_bridge.git
+	branch = galactic
+[submodule "src/robot_localization"]
+	path = src/robot_localization
+	url = https://github.com/nobleo/robot_localization.git
+	branch = fix/galactic/load_parameters

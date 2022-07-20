@@ -1,0 +1,52 @@
+site_name: Dorothy2 project
+site_url: https://192.168.1.6/dorothy2_ws_docs
+site_dir: public
+
+plugins:
+  - search
+  # - awesome-pages
+  # - mermaid2
+
+theme: 
+  name: mkdocs
+  features:
+    - navigation.tracking
+  palette:
+  # Light mode / dark mode
+  # We deliberately don't automatically use `media` to check a user's preferences. We default to light mode as
+  # (a) it looks more professional, and (b) is more obvious about the fact that it offers a (dark mode) toggle.
+  - scheme: default
+    primary: white
+    accent: amber
+    toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+  - scheme: slate
+    primary: black
+    accent: amber
+    toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+extra_javascript: 
+  - mermaid.min.js
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tilde # define subscript
+  - pymdownx.critic # track changes
+  - pymdownx.details # add collapsible call-outs
+  - pymdownx.emoji: # add inlines bundled and custom icons and emojis 
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences # define code blocks and nesting of code
+  - pymdownx.highlight: # highlight of code blocks
+      linenums_style: pymdownx-inline
+      # anchor_linenums: true # create anchor link on each line of code
+  - pymdownx.inlinehilite # highlight inline code blocks
+  - pymdownx.smartsymbols # convert some sequences of characters into their corresponding symbols
+  - pymdownx.snippets #  embed content from arbitrary files into a document

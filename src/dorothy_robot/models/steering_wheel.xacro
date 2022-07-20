@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- Macros and impelemnatation of wheels, suspensions and steering system -->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="w" value="0.1" />
+    <xacro:property name="r" value="0.1" />
+    <xacro:property name="m" value="0.1" />
+    <xacro:macro name="steering_wheel" params="xyz steering_wheel_base_link">
+
+        <link name="steering_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="${r}" length="${w}" />
+                    <!-- <box size="${r} ${r} ${1.1*w}" /> -->
+                </geometry>
+                <material name="Wheel_Black" />
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="${r}" length="${w}" />
+                </geometry>
+            </collision>
+            <xacro:cylinder_inertia m="${m}" r="${r}" h="${w}" />
+        </link>
+        <gazebo reference="steering_link"></gazebo>
+        <joint name="steering_joint" type="revolute">
+            <limit lower="${-M_PI/3}" upper="${+M_PI/3}" effort="100" velocity="1" />
+            <parent link="${steering_wheel_base_link}" />
+            <child link="steering_link" />
+            <axis xyz="${xyz}"/>
+            <origin xyz="${xyz}" rpy="0 0 0" />
+            <dynamics damping="0.0" friction="0" />
+        </joint>
+
+    </xacro:macro>
+</robot>

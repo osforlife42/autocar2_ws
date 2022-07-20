@@ -1,0 +1,20 @@
+digraph G {
+"base_link" -> "bl_1"[label=" Broadcaster: default_authority\nAverage rate: 17.882\nBuffer length: 4.25\nMost recent transform: 94.214\nOldest transform: 89.964\n"];
+"base_footprint" -> "base_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "br_1"[label=" Broadcaster: default_authority\nAverage rate: 17.882\nBuffer length: 4.25\nMost recent transform: 94.214\nOldest transform: 89.964\n"];
+"l_steer_1" -> "fl_1"[label=" Broadcaster: default_authority\nAverage rate: 17.882\nBuffer length: 4.25\nMost recent transform: 94.214\nOldest transform: 89.964\n"];
+"base_link" -> "l_steer_1"[label=" Broadcaster: default_authority\nAverage rate: 17.882\nBuffer length: 4.25\nMost recent transform: 94.214\nOldest transform: 89.964\n"];
+"r_steer_1" -> "fr_1"[label=" Broadcaster: default_authority\nAverage rate: 17.882\nBuffer length: 4.25\nMost recent transform: 94.214\nOldest transform: 89.964\n"];
+"base_link" -> "r_steer_1"[label=" Broadcaster: default_authority\nAverage rate: 17.882\nBuffer length: 4.25\nMost recent transform: 94.214\nOldest transform: 89.964\n"];
+"pod" -> "camera_front"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "pod"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"pod" -> "camera_left"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"pod" -> "camera_rear"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"pod" -> "camera_right"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"odom" -> "base_footprint"[label=" Broadcaster: default_authority\nAverage rate: 11.956\nBuffer length: 4.182\nMost recent transform: 94.163\nOldest transform: 89.981\n"];
+"pod" -> "laser"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1656329460.735756"[ shape=plaintext ] ;
+}->"odom";
+}

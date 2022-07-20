@@ -1,0 +1,23 @@
+# List of repositories to use within your workspace
+# See https://github.com/dirk-thomas/vcstool
+############ 
+# Example:
+############
+repositories:
+  geographic_info:
+    type: git
+    url: https://github.com/mikaelarguedas/geographic_info
+    version: ros2-msgs
+  mavros:
+    type: git
+    url: https://github.com/mikaelarguedas/mavros
+    version: ros2-msgs
+  unique_identifier:
+    type: git
+    url: https://github.com/mikaelarguedas/unique_identifier
+    version: ros2-msgs
+  ros1_bridge:
+    type: git
+    url: https://github.com/ros2/ros1_bridge.git
+    version: master
+

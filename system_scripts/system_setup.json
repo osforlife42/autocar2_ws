@@ -1,0 +1,12 @@
+{
+    "components": {
+        "machine": "pc", 
+        "jetson_machine_ip": "192.168.1.69", 
+        "ardupilot": "sitl"
+    },
+    "domain_ids": {
+        "edge_domain_id": 12,
+        "home_domain_id": 12
+    }
+
+}
