@@ -136,8 +136,8 @@ controller_server:
       plugin: "teb_local_planner::TebLocalPlannerROS"
       footprint_model.type: circular
       footprint_model.radius: 0.17
-      min_obstacle_dist: 0.1
-      inflation_dist: 0.1
+      min_obstacle_dist: 0.01
+      inflation_dist: 0.01
       costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSMCCH"
       costmap_converter_spin_thread: True
       costmap_converter_rate: 15
@@ -149,11 +149,12 @@ controller_server:
       max_samples: 20
       max_global_plan_lookahead_dist: 1.0
       visualize_hc_graph: True
-      max_vel_x: 0.26
-      max_vel_theta: 1.0
+      max_vel_x: 0.46
+      max_vel_theta: 2.0
       acc_lim_x: 2.5
-      acc_lim_theta: 3.2
-      min_turning_radius: 1.0 # my addition - "Minimum turning radius of a carlike robot (diff-drive robot: zero)"
+      acc_lim_theta: 2.2
+      min_turning_radius: 0.5 # my addition - "Minimum turning radius of a carlike robot (diff-drive robot: zero)"
+
 
     # # RPP parameters
     # FollowPath:
@@ -353,14 +354,15 @@ slam_toolbox:
     map_frame: map
     base_frame: base_footprint
     scan_topic: /scan
-    mode: mapping #localization
+    mode: mapping  #localization 
 
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
     # will use pose
-    # map_file_name: /home/ros/dev_ws/src/dorothy_robot/maps/slam/slam_map_3
-    map_start_pose: [0.717364, -2.28782, 0.0]
-    #map_start_at_dock: true
+    # map_file_name: /home/ros/dev_ws/src/dorothy_robot/maps/slam_map_2
+    # map_start_pose: [0.717364, -2.28782, 0.0]
+    # map_start_at_dock: true
+# /home/ros/dev_ws/src/dorothy_robot/maps/slam_map_inhouse
 
     debug_logging: false
     throttle_scans: 1
